@@ -132,10 +132,6 @@ let navConfigs = ref([
     key: navType.reset,
     label: '一键重置',
   },
-  {
-    key: navType.about,
-    label: '关于'
-  },
 ]);
 
 const themeModeOptions = ref([
@@ -277,20 +273,6 @@ const handleSelect = async (key: string) => {
     case navType.reset:
       {
         isShowClearCacheModal.value = true;
-      }
-      break;
-    case navType.about:
-      {
-        isShowSetAboutModal.value = true;
-        GetLastVersion();
-        await sleep(25)
-        const ele = document.createElement('div');
-        render(h(NConfigProvider, { theme: theme.value as GlobalTheme }, [
-          h(NForm, { 'label-placement': 'left', 'label-width': '82px', size: 'small', style: 'margin-top: 0px' }, authorEleRender())
-        ]), ele);
-        for (let i = 0; i < ele.childNodes.length; i++) {
-          document.getElementById('latestVersion')?.parentNode?.appendChild(ele.childNodes[i]);
-        }
       }
       break;
     default:
